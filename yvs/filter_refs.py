@@ -1,7 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
-
-from __future__ import print_function, unicode_literals
 
 import re
 import sys
@@ -73,7 +71,7 @@ def guess_version(versions, version_query):
 
     # Chop off character from version query until matching version can be
     # found (if a matching version even exists)
-    for i in xrange(len(version_query), 0, -1):
+    for i in range(len(version_query), 0, -1):
         for version in versions:
             if (normalize_query_str(
                   version['name']).startswith(version_query[:i])):
@@ -234,4 +232,4 @@ def main(query_str):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1].decode('utf-8'))
+    main(sys.argv[1])

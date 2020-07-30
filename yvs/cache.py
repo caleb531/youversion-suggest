@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 
 import hashlib
@@ -75,7 +75,7 @@ def add_cache_entry(entry_key, entry_content):
     # Write entry content to entry file
     entry_path = get_cache_entry_path(entry_key)
     with open(entry_path, 'w') as entry_file:
-        entry_file.write(entry_content.encode('utf-8'))
+        entry_file.write(entry_content)
 
     entry_checksum = os.path.basename(entry_path)
     cache_manifest_path = get_cache_manifest_path()
@@ -93,7 +93,7 @@ def get_cache_entry_content(entry_key):
     entry_path = get_cache_entry_path(entry_key)
     try:
         with open(entry_path, 'r') as entry_file:
-            return entry_file.read().decode('utf-8')
+            return entry_file.read()
     except IOError:
         return None
 

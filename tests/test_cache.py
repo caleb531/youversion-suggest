@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 
 from __future__ import unicode_literals
@@ -20,7 +20,8 @@ def test_cache_housekeeping(out):
     """should purge oldest entry when cache grows too large"""
     entry_key = 'a'
     num_entries = cache.MAX_NUM_CACHE_ENTRIES + 2
-    purged_entry_checksum = hashlib.sha1(('a' * 1).encode('utf-8')).hexdigest()
+    purged_entry_checksum = hashlib.sha1(
+        ('a' * 1).encode('utf-8')).hexdigest()
     last_entry_checksum = hashlib.sha1(
         ('a' * num_entries).encode('utf-8')).hexdigest()
     nose.assert_false(

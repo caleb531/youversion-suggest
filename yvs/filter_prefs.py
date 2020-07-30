@@ -1,7 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
-
-from __future__ import print_function, unicode_literals
 
 import json
 import re
@@ -286,4 +284,4 @@ def main(query_str):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1].decode('utf-8'))
+    main(sys.argv[1])

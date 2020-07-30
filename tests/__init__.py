@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 
 import os
@@ -6,7 +6,7 @@ import os.path
 import shutil
 import tempfile
 
-from mock import patch
+from unittest.mock import patch
 
 import yvs.core as core
 import yvs.cache as cache

@@ -1,10 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 
-from __future__ import print_function, unicode_literals
-
 import sys
-import urllib
+import urllib.parse
 
 import yvs.core as core
 import yvs.cache as cache
@@ -100,7 +98,7 @@ class SearchResultParser(YVParser):
 def get_search_html(query_str, user_prefs):
 
     url = 'https://www.bible.com/search/bible?q={}&version_id={}'.format(
-        urllib.quote_plus(query_str.encode('utf-8')), user_prefs['version'])
+        urllib.parse.quote_plus(query_str), user_prefs['version'])
 
     entry_key = '{}/{}.html'.format(user_prefs['version'], query_str)
     search_html = cache.get_cache_entry_content(entry_key)
@@ -132,8 +130,8 @@ def main(query_str):
             'valid': False
         })
 
-    print(core.get_result_list_feedback_str(results).encode('utf-8'))
+    print(core.get_result_list_feedback_str(results))
 
 
 if __name__ == '__main__':
-    main(sys.argv[1].decode('utf-8'))
+    main(sys.argv[1])

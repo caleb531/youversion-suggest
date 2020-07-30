@@ -1,7 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
-
-from __future__ import print_function, unicode_literals
 
 import glob
 import json
@@ -70,13 +68,13 @@ def test_filter_versions():
     nose.assert_equal(len(results), 3)
     nose.assert_equal(results[0]['uid'], 'yvs-version-110')
     nose.assert_equal(results[0]['title'],
-                      'New International Reader\'s Version (NIRV)')
+                      'New International Reader’s Version (NIRV)')
     nose.assert_equal(results[0].get('valid', True), True)
     nose.assert_equal(results[0]['variables'], {
         'pref_id': 'version',
         'pref_name': 'version',
         'value_id': '110',
-        'value_name': 'New International Reader\'s Version (NIRV)'
+        'value_name': 'New International Reader’s Version (NIRV)'
     })
 
 

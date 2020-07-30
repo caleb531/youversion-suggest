@@ -1,17 +1,15 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 
-from __future__ import print_function, unicode_literals
-
 import nose.tools as nose
-from mock import Mock, NonCallableMock, patch
+from unittest.mock import Mock, NonCallableMock, patch
 
 import tests
 from yvs.yv_parser import YVParser
 
 with open('tests/html/psa.23.html') as html_file:
     patch_urlopen = patch(
-        'urllib2.urlopen', return_value=NonCallableMock(
+        'urllib.request.urlopen', return_value=NonCallableMock(
             read=Mock(return_value=html_file.read())))
 
 

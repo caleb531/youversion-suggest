@@ -1,7 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
-
-from __future__ import print_function, unicode_literals
 
 import json
 import os
@@ -157,7 +155,7 @@ def extend_user_prefs(user_prefs, default_user_prefs):
             user_prefs[pref_key] = default_user_prefs[pref_key]
 
     # Remove any obsolete preferences
-    for pref_key in user_prefs.keys():
+    for pref_key in list(user_prefs.keys()):
         if pref_key not in default_user_prefs:
             del user_prefs[pref_key]
 

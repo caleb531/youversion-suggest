@@ -1,12 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
-
-from __future__ import print_function, unicode_literals
 
 import json
 
 import nose.tools as nose
-from mock import Mock, NonCallableMock, patch
+from unittest.mock import Mock, NonCallableMock, patch
 
 import tests
 import yvs.search_refs as yvs
@@ -14,7 +12,7 @@ from tests.decorators import redirect_stdout, use_user_prefs
 
 with open('tests/html/search.html') as html_file:
     patch_urlopen = patch(
-        'urllib2.urlopen', return_value=NonCallableMock(
+        'urllib.request.urlopen', return_value=NonCallableMock(
             read=Mock(return_value=html_file.read())))
 
 
@@ -71,7 +69,7 @@ def test_unicode_input(get_url_content):
 def test_cache_url_content():
     """should cache search URL content after first fetch"""
     yvs.get_result_list('love others')
-    with patch('urllib2.Request') as request:
+    with patch('urllib.request.Request') as request:
         yvs.get_result_list('love others')
         request.assert_not_called()
 

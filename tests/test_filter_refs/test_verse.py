@@ -1,7 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
-
-from __future__ import print_function, unicode_literals
 
 import nose.tools as nose
 
@@ -78,5 +76,5 @@ def test_range_invalid():
 def test_zero_verse():
     """should interpret verse zero as verse one"""
     results = yvs.get_result_list('ps 23:0')
-    nose.assert_equal(results[0]['title'], 'Psalm 23:1 (NIV)')
+    nose.assert_equal(results[0]['title'], 'Psalms 23:1 (NIV)')
     nose.assert_equal(len(results), 1)

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 
 from __future__ import unicode_literals
@@ -40,5 +40,5 @@ def test_endverse_overflow():
 def test_verse_and_endverse_overflow():
     """should revert to single verse if verse and endverse are too high"""
     results = yvs.get_result_list('ps 23.7-9')
-    nose.assert_equal(results[0]['title'], 'Psalm 23:6 (NIV)')
+    nose.assert_equal(results[0]['title'], 'Psalms 23:6 (NIV)')
     nose.assert_equal(len(results), 1)

@@ -1,7 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
-
-from __future__ import print_function, unicode_literals
 
 import nose.tools as nose
 
@@ -38,5 +36,5 @@ def test_id():
 def test_zero_chapter():
     """should interpret chapter zero as chapter one"""
     results = yvs.get_result_list('ps 0')
-    nose.assert_equal(results[0]['title'], 'Psalm 1 (NIV)')
+    nose.assert_equal(results[0]['title'], 'Psalms 1 (NIV)')
     nose.assert_equal(len(results), 1)

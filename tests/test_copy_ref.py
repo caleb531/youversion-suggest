@@ -1,12 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
-
-from __future__ import print_function, unicode_literals
 
 import json
 
 import nose.tools as nose
-from mock import Mock, NonCallableMock, patch
+from unittest.mock import Mock, NonCallableMock, patch
 
 import tests
 import yvs.copy_ref as yvs
@@ -14,7 +12,7 @@ from tests.decorators import redirect_stdout, use_user_prefs
 
 with open('tests/html/psa.23.html') as html_file:
     patch_urlopen = patch(
-        'urllib2.urlopen', return_value=NonCallableMock(
+        'urllib.request.urlopen', return_value=NonCallableMock(
             read=Mock(return_value=html_file.read())))
 
 
@@ -63,14 +61,14 @@ def test_copy_verse_range():
 def test_refformat():
     """should honor the chosen reference format"""
     ref_content = yvs.get_copied_ref('59/psa.23.6')
-    nose.assert_equals(ref_content, '"Proin nulla orci,"\n\n(Psalm 23:6 ESV)')
+    nose.assert_equals(ref_content, '"Proin nulla orci,"\n\n(Psalms 23:6 ESV)')
 
 
 @nose.with_setup(set_up, tear_down)
 def test_header():
     """should prepend reference header to copied string"""
     ref_content = yvs.get_copied_ref('59/psa.23')
-    nose.assert_regexp_matches(ref_content, r'^Psalm 23 \(ESV\)')
+    nose.assert_regexp_matches(ref_content, r'^Psalms 23 \(ESV\)')
 
 
 @nose.with_setup(set_up, tear_down)
@@ -98,7 +96,7 @@ def test_whitespace_words():
 def test_whitespace_lines():
     """should add line breaks where appropriate"""
     ref_content = yvs.get_copied_ref('111/psa.23')
-    nose.assert_regexp_matches(ref_content, r'Psalm 23 \(NIV\)\n\n\S',
+    nose.assert_regexp_matches(ref_content, r'Psalms 23 \(NIV\)\n\n\S',
                                'should add two line breaks after header')
     nose.assert_regexp_matches(ref_content, r'amet,\nconsectetur',
                                'should add newline before each p block')
@@ -187,7 +185,7 @@ def test_url_always_chapter(get_url_content):
 def test_cache_url_content():
     """should cache chapter URL content after first fetch"""
     yvs.get_copied_ref('59/psa.23.2')
-    with patch('urllib2.Request') as request:
+    with patch('urllib.request.Request') as request:
         yvs.get_copied_ref('59/psa.23.3')
         request.assert_not_called()
 
@@ -203,7 +201,7 @@ def test_nonexistent_verse():
 def test_unicode_content():
     """should return copied reference content as Unicode"""
     ref_content = yvs.get_copied_ref('111/psa.23')
-    nose.assert_is_instance(ref_content, unicode)
+    nose.assert_is_instance(ref_content, str)
 
 
 @nose.with_setup(set_up, tear_down)
@@ -219,7 +217,7 @@ def test_main(out):
             'arg': ref_uid,
             'variables': {
                 'copied_ref': ref_content,
-                'full_ref_name': 'Psalm 23 (ESV)'
+                'full_ref_name': 'Psalms 23 (ESV)'
             }
         }
     })
